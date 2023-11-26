@@ -1,4 +1,4 @@
-package ui;
+package ui.Panels;
 
 import game.*;
 

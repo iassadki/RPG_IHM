@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.*;
+
 public class Game {
 
     private Map map;
@@ -19,4 +21,7 @@ public class Game {
         return this.player;
     }
 
+    public Panel getPanel() {
+        return this.getPanel();
+    }
 }

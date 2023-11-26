@@ -18,5 +18,4 @@ public class Map {
     public int[][] getMap() {
         return this.map;
     }
-
 }

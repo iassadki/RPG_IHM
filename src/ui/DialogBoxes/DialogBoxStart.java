@@ -1,6 +1,7 @@
-package ui;
+package ui.DialogBoxes;
 
 import game.*;
+import ui.Panels.MenuStartPanel;
 
 import javax.swing.*;
 import java.awt.*;

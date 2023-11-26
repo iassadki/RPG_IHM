@@ -1,13 +1,13 @@
-package mainGUI;
-
-
 import game.*;
-import ui.*;
+import ui.DialogBoxes.DialogBoxStart;
+import ui.Panels.GamePanel;
+
 import javax.swing.*;
 
 public class MainGUI {
 
     public static void main(String[] args) {
+
         // Define the GUI main window
         JFrame window = new JFrame();
         // set window size (width, height)
@@ -19,7 +19,7 @@ public class MainGUI {
         // exit the application when the user close the frame
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // set the window title
-        window.setTitle("My Game");
+        window.setTitle("RPG SWING");
         // show the window
         window.setVisible(true);
 
