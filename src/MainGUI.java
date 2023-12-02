@@ -29,10 +29,11 @@ public class MainGUI {
         System.out.println(gameInputs.getPlayerName());
         System.out.println(gameInputs.getPlayerCast());
 
-        // create game
+        // Create game
         Game game = new Game(gameInputs);
         // Create the main panel in which graphical components will be defined
         GamePanel gamePanel = new GamePanel(game);
+
 
         window.add(gamePanel);
         window.pack();

@@ -1,6 +1,8 @@
 package ui.Panels;
 
 import game.Game;
+import game.GameInputs;
+import ui.DialogBoxes.DialogBoxStart;
 import ui.DialogBoxes.DialogBoxWeaponsStore;
 
 import javax.swing.*;
@@ -13,6 +15,7 @@ public class GamePanel extends JPanel {
     private MapPanel mapPanel;
     private InventoryPanel inventoryPanel;
     private PlayerInfoPanel playerInfoPanel;
+    private Game playerInfo;
 
     public GamePanel(Game game) {
         // Game Panel Noir
@@ -26,6 +29,22 @@ public class GamePanel extends JPanel {
         // Add InventoryPanel to GamePanel
         // this.inventoryPanel = new InventoryPanel(this); // Pass the GamePanel itself
         // this.add(inventoryPanel, BorderLayout.WEST);
+
+        // Add the name and the cast of the player in the center of the GamePanel
+        //this.playerInfo = new Game(game.getPlayer());
+        //this.add(playerInfo, BorderLayout.CENTER);
+
+        //GameInputs gameInputs = new GameInputs();
+        //new DialogBoxStart(gameInputs);
+        //System.out.println(gameInputs.getPlayerName());
+        //System.out.println(gameInputs.getPlayerCast());
+
+
+        // Add InventoryPanel to GamePanel
+        //GameInputs gameInputs = new GameInputs();
+        //new DialogBoxStart(gameInputs);
+        //System.out.println(gameInputs.getPlayerName());
+        //System.out.println(gameInputs.getPlayerCast());
 
         // Add buttons to the GamePanel
         JButton showWeaponsButton = new JButton("Show Weapons");
@@ -59,7 +78,7 @@ public class GamePanel extends JPanel {
 
         // Add PlayerInfoPanel to GamePanel
         this.playerInfoPanel = new PlayerInfoPanel(game.getPlayer()); // Crée une instance
-        this.add(playerInfoPanel, BorderLayout.SOUTH);
+        this.add(playerInfoPanel, BorderLayout.SOUTH); // Ajoute l'instance à la GamePanel
 
         // Add PlayerCast to GamePanel (getPlayerCast() returns a JPanel)
         //this.playerCast = new PlayerInfoPanel(game.getPlayer()); // Crée une instance
