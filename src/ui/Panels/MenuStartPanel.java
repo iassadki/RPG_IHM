@@ -25,7 +25,7 @@ public class MenuStartPanel extends JPanel {
 
     public MenuStartPanel(GameInputs gameInputs) {
         this.gameInputs = gameInputs;
-        initComponents();
+        initComponents(); //
     }
 
     private void setPlayerName(String name) {

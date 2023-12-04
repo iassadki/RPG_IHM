@@ -4,10 +4,12 @@ public class GameInputs {
 
     private String playerName;
     private PlayerCast playerCast;
+    private String selectedWeapon;  // Nouveau champ pour stocker l'arme sélectionnée
 
     public GameInputs() {
         this.playerName = "";
         this.playerCast = null;
+        this.selectedWeapon = "";
     }
 
     public String getPlayerName() {
@@ -18,6 +20,10 @@ public class GameInputs {
         return this.playerCast;
     }
 
+    public String getSelectedWeapon() {
+        return this.selectedWeapon;
+    }
+
     public void setPlayerName(String n) {
         this.playerName = n;
     }
@@ -26,4 +32,7 @@ public class GameInputs {
         this.playerCast = c;
     }
 
+    public void setSelectedWeapon(String weapon) {
+        this.selectedWeapon = weapon;
+    }
 }

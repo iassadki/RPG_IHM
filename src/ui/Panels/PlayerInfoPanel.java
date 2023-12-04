@@ -15,7 +15,11 @@ public class PlayerInfoPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
 
-        JLabel playerNameLabel = new JLabel("Player Name: " + player.getName());
+        JLabel playerNameLabel = new JLabel("Player Name: " + player.getName()+" " +
+                "| Life: " + player.getLife()+" " +
+                "| Money: "+player.getMoney()+" " +
+                "| Cast: "+player.getCast().toString()+ " " +
+                "| Weapons: "+player.getWeapons().toString());
         playerNameLabel.setForeground(Color.WHITE); // Set text color to white
         playerNameLabel.setHorizontalAlignment(JLabel.LEFT); // Center align text
 

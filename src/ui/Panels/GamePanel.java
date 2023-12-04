@@ -1,52 +1,33 @@
 package ui.Panels;
 
-import game.Game;
-import game.GameInputs;
-import ui.DialogBoxes.DialogBoxStart;
+import game.*;
 import ui.DialogBoxes.DialogBoxWeaponsStore;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class GamePanel extends JPanel {
 
     private MapPanel mapPanel;
     private InventoryPanel inventoryPanel;
     private PlayerInfoPanel playerInfoPanel;
-    private Game playerInfo;
+    private Game game;
 
     public GamePanel(Game game) {
-        // Game Panel Noir
+        this.game = game;
+        //addKeyListener((KeyListener) this); //
+        setFocusable(true);
+
         this.setLayout(new BorderLayout());
         this.setBackground(Color.BLACK);
 
-        // Map dans la GamePanel
         this.mapPanel = new MapPanel(game.getMap());
         this.add(mapPanel, BorderLayout.NORTH);
 
-        // Add InventoryPanel to GamePanel
-        // this.inventoryPanel = new InventoryPanel(this); // Pass the GamePanel itself
-        // this.add(inventoryPanel, BorderLayout.WEST);
-
-        // Add the name and the cast of the player in the center of the GamePanel
-        //this.playerInfo = new Game(game.getPlayer());
-        //this.add(playerInfo, BorderLayout.CENTER);
-
-        //GameInputs gameInputs = new GameInputs();
-        //new DialogBoxStart(gameInputs);
-        //System.out.println(gameInputs.getPlayerName());
-        //System.out.println(gameInputs.getPlayerCast());
-
-
-        // Add InventoryPanel to GamePanel
-        //GameInputs gameInputs = new GameInputs();
-        //new DialogBoxStart(gameInputs);
-        //System.out.println(gameInputs.getPlayerName());
-        //System.out.println(gameInputs.getPlayerCast());
-
-        // Add buttons to the GamePanel
         JButton showWeaponsButton = new JButton("Show Weapons");
         JButton weaponStoreButton = new JButton("Weapon Store");
 
@@ -59,7 +40,6 @@ public class GamePanel extends JPanel {
         });
 
         JButton quitButton = new JButton("Quit");
-        // Add ActionListener to the Quit button
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,30 +47,75 @@ public class GamePanel extends JPanel {
             }
         });
 
-        // Create a panel for the buttons
         JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
         buttonPanel.add(showWeaponsButton);
         buttonPanel.add(weaponStoreButton);
         buttonPanel.add(quitButton);
 
-        // Add the button panel to the GamePanel
         this.add(buttonPanel, BorderLayout.WEST);
 
-        // Add PlayerInfoPanel to GamePanel
-        this.playerInfoPanel = new PlayerInfoPanel(game.getPlayer()); // Crée une instance
-        this.add(playerInfoPanel, BorderLayout.SOUTH); // Ajoute l'instance à la GamePanel
+        this.playerInfoPanel = new PlayerInfoPanel(game.getPlayer());
+        this.add(playerInfoPanel, BorderLayout.SOUTH);
 
-        // Add PlayerCast to GamePanel (getPlayerCast() returns a JPanel)
-        //this.playerCast = new PlayerInfoPanel(game.getPlayer()); // Crée une instance
-        //this.add(game.getPlayer().getPlayerCast(), BorderLayout.CENTER);
-
-
-        // Set an empty border to remove the scrollbar
         this.setBorder(BorderFactory.createEmptyBorder());
+
+        Player player = game.getPlayer();
+        player.setMapPanel(mapPanel);  // Définir la référence à MapPanel dans Player
+
+        this.mapPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // ...
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+                Direction direction = null;
+
+                switch (keyCode) {
+                    case KeyEvent.VK_Z:
+                        direction = Direction.UP;
+                        break;
+                    case KeyEvent.VK_S:
+                        direction = Direction.DOWN;
+                        break;
+                    case KeyEvent.VK_D:
+                        direction = Direction.RIGHT;
+                        break;
+                    case KeyEvent.VK_Q:
+                        direction = Direction.LEFT;
+                        break;
+                }
+
+                if (direction != null) {
+                    game.getPlayer().move(direction);
+                    repaint();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // ...
+            }
+        });
+
     }
 
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(800, 500);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        String message = "Appuyez sur Z, Q, S, D pour vous déplacer";
+        int x = (getWidth() - g.getFontMetrics().stringWidth(message)) / 2;
+        int y = getHeight() / 2;
+        g.drawString(message, x, y);
     }
 }
