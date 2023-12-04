@@ -9,6 +9,9 @@ public class MapPanel extends JPanel {
 
     static final int cellSize = 24;
 
+    private static final int CoordX = 200;  // Déclarez la variable CoordX comme une constante de classe
+    private static final int CoordY = 50;   // Déclarez la variable CoordY comme une constante de classe
+
     private char[][] mapGrid;
 
     private Image playerImage;
@@ -29,10 +32,12 @@ public class MapPanel extends JPanel {
     }
 
     public void updatePlayerPosition(int row, int col) {
+        repaintCell(playerRow, playerCol);  // Réinitialisez la couleur de la cellule précédente
         this.playerRow = row;
         this.playerCol = col;
         repaint();  // Force la redessiner du panneau avec la nouvelle position du joueur
     }
+
 
     @Override
     public void paint(Graphics g) {
@@ -44,21 +49,38 @@ public class MapPanel extends JPanel {
             for (int col = 0; col < this.mapGrid[0].length; col++) {
                 Color color;
                 switch (this.mapGrid[row][col]) {
-                    case 'P' : color = new Color(0, 255, 255); break; // 0 = Rouge, 255 = Vert, 255 = Bleu (couleur CYAN avec opacité complète)
-                    case 'M' : color = Color.BLACK; break;
-                    case 'E' : color = Color.GREEN; break;
-                    default : color = Color.WHITE;
-                };
+                    case 'P':
+                        color = new Color(0, 255, 255);
+                        break;
+                    case 'M':
+                        color = Color.BLACK;
+                        break;
+                    case 'E':
+                        color = Color.GREEN;
+                        break;
+                    default:
+                        color = Color.WHITE;
+                }
+                ;
                 g.setColor(color);
                 g.fillRect(CoordX + cellSize * col, CoordY + cellSize * row, cellSize, cellSize);
-                if (this.mapGrid[row][col] == 'P') {
-                    g.drawImage(this.getPlayerImage(), CoordX + cellSize * this.playerCol, CoordY + cellSize * this.playerRow, null);
-                }
+
                 g.setColor(Color.BLACK); // contours
                 g.drawRect(CoordX + cellSize * col, CoordY + cellSize * row, cellSize, cellSize);
             }
         }
+
+        clearPlayerPosition();  // Effacez l'ancienne position du joueur
+        g.drawImage(this.getPlayerImage(), CoordX + cellSize * this.playerCol, CoordY + cellSize * this.playerRow, null);
         this.requestFocusInWindow();  // Permet de forcer le focus sur le panneau pour que les touches du clavier soient prises en compte
+    }
+
+    public void clearPlayerPosition() {
+        repaintCell(playerRow, playerCol);  // Réinitialisez la couleur de la cellule précédente
+    }
+
+    private void repaintCell(int row, int col) {
+        this.repaint(CoordX + cellSize * col, CoordY + cellSize * row, cellSize, cellSize);
     }
 
     @Override

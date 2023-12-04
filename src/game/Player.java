@@ -70,10 +70,12 @@ public class Player {
 
         // Vérifier si la nouvelle position est valide
         if (map.isValidPosition(newRow, newCol)) {
+            mapPanel.clearPlayerPosition();  // Effacez l'ancienne position du joueur dans le panneau de la carte
             map.setPlayerPosition(playerRow, playerCol, 0);  // Clear the current position
-            map.setPlayerPosition(newRow, newCol, 2);  // Set the new position
             playerRow = newRow;
             playerCol = newCol;
+            map.setPlayerPosition(playerRow, playerCol, 2);  // Set the new position
+            mapPanel.updatePlayerPosition(playerRow, playerCol);  // Mettez à jour la position du joueur dans le panneau de la carte
             return new int[]{playerRow, playerCol};
         }
 

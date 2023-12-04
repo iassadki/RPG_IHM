@@ -76,21 +76,25 @@ public class GamePanel extends JPanel {
                 switch (keyCode) {
                     case KeyEvent.VK_Z:
                         direction = Direction.UP;
+                        mapPanel.repaint();
                         break;
                     case KeyEvent.VK_S:
                         direction = Direction.DOWN;
+                        mapPanel.repaint();
                         break;
                     case KeyEvent.VK_D:
                         direction = Direction.RIGHT;
+                        mapPanel.repaint();
                         break;
                     case KeyEvent.VK_Q:
                         direction = Direction.LEFT;
+                        mapPanel.repaint();
                         break;
                 }
 
                 if (direction != null) {
                     game.getPlayer().move(direction);
-                    repaint();
+                    mapPanel.repaint();
                 }
             }
 
