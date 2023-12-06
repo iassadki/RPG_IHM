@@ -27,10 +27,10 @@ public class Player {
         this.money = 50;
         this.life = 100;
         this.weapons = new ArrayList<Weapon>();
-        this.map = map;  // Ajout de cette ligne pour initialiser la carte
-        this.playerRow = 0;  // Ajout de cette ligne pour initialiser la position du joueur
-        this.playerCol = 0;  // Ajout de cette ligne pour initialiser la position du joueur
-        this.map.setPlayerPosition(playerRow, playerCol, 0);  // Ajout de cette ligne pour définir la position initiale du joueur sur la carte
+        this.map = map;  // Initialisation la carte
+        this.playerRow = 0;  // Initialisation la position du joueur en ligne
+        this.playerCol = 0;  // Initialisation la position du joueur en colonne
+        this.map.setPlayerPosition(playerRow, playerCol, 0);  // Définit la position initiale du joueur sur la carte
     }
 
     public String getName() {

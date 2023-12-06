@@ -35,8 +35,7 @@ public class MainGUI {
         GamePanel gamePanel = new GamePanel(game);
 
         // Display the weapon selected by the player in the weapon store
-        System.out.println("Arme");
-        System.out.println("Arme actuelle : " +gameInputs.getSelectedWeapon());
+        //System.out.println("Arme actuelle : " +gameInputs.getSelectedWeapon());
 
         window.add(gamePanel);
         window.pack();

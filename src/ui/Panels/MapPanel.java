@@ -9,8 +9,8 @@ public class MapPanel extends JPanel {
 
     static final int cellSize = 24;
 
-    private static final int CoordX = 200;  // Déclarez la variable CoordX comme une constante de classe
-    private static final int CoordY = 50;   // Déclarez la variable CoordY comme une constante de classe
+    private static final int CoordX = 200;
+    private static final int CoordY = 50;
 
     private char[][] mapGrid;
 
@@ -37,7 +37,6 @@ public class MapPanel extends JPanel {
         this.playerCol = col;
         repaint();  // Force la redessiner du panneau avec la nouvelle position du joueur
     }
-
 
     @Override
     public void paint(Graphics g) {
