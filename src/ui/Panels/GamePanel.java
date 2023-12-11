@@ -95,6 +95,7 @@ public class GamePanel extends JPanel {
                 if (direction != null) {
                     game.getPlayer().move(direction);
                     mapPanel.repaint();
+                    checkEndGame(); // Check for the end of the game when moving
                 }
             }
 
@@ -104,6 +105,17 @@ public class GamePanel extends JPanel {
             }
         });
 
+    }
+
+    private void checkEndGame() {
+        Player player = game.getPlayer();
+        int playerRow = player.getRow();
+        int playerCol = player.getCol();
+
+        if (game.getMap().getMap()[playerRow][playerCol] == 'E') {
+            JOptionPane.showMessageDialog(this, "Congratulations, You have won the game!", "Game Finished", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Fin du jeu");
+        }
     }
 
     @Override

@@ -49,6 +49,15 @@ public class Player {
         return this.weapons;
     }
 
+    public int getRow() {
+        return this.playerRow;
+    }
+
+    public int getCol() {
+        return this.playerCol;
+    }
+
+
     public int[] move(Direction direction) {
         int newRow = this.playerRow;
         int newCol = this.playerCol;

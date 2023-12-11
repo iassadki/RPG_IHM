@@ -32,10 +32,20 @@ public class MapPanel extends JPanel {
     }
 
     public void updatePlayerPosition(int row, int col) {
-        repaintCell(playerRow, playerCol);  // Réinitialisez la couleur de la cellule précédente
+        // Set the color of the previous player position to white
+        mapGrid[playerRow][playerCol] = ' '; // Assuming ' ' represents an empty cell
+
+        // Check if the player has reached the end position
+        if (mapGrid[row][col] == 'E') {
+            // Display a message dialog
+            SwingUtilities.invokeLater(() -> {
+                JOptionPane.showMessageDialog(this, "Congratulations, You have won the game!", "Game Finished", JOptionPane.INFORMATION_MESSAGE);
+            });
+        }
+
         this.playerRow = row;
         this.playerCol = col;
-        repaint();  // Force la redessiner du panneau avec la nouvelle position du joueur
+        repaint();  // Force the panel to redraw with the new player position
     }
 
     @Override
