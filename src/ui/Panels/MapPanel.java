@@ -1,6 +1,7 @@
 package ui.Panels;
 
 import game.*;
+import game.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,6 @@ public class MapPanel extends JPanel {
 
     public MapPanel(Map map) {
         this.mapGrid = map.getMap();
-        //TODO: CHANGE PATH TO IMAGE
         ImageIcon img = new ImageIcon("C:\\Users\\ilias\\su-java\\RPG_IHM\\src\\assets\\link.png");
         this.playerImage = img.getImage();
         this.playerRow = 0;
@@ -35,17 +35,10 @@ public class MapPanel extends JPanel {
         // Set the color of the previous player position to white
         mapGrid[playerRow][playerCol] = ' '; // Assuming ' ' represents an empty cell
 
-        // Check if the player has reached the end position
-        if (mapGrid[row][col] == 'E') {
-            // Display a message dialog
-            SwingUtilities.invokeLater(() -> {
-                JOptionPane.showMessageDialog(this, "Congratulations, You have won the game!", "Game Finished", JOptionPane.INFORMATION_MESSAGE);
-            });
-        }
-
         this.playerRow = row;
         this.playerCol = col;
         repaint();  // Force the panel to redraw with the new player position
+
     }
 
     @Override

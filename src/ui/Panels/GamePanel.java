@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 public class GamePanel extends JPanel {
 
     private MapPanel mapPanel;
-    private InventoryPanel inventoryPanel;
+    //private InventoryPanel inventoryPanel;
     private PlayerInfoPanel playerInfoPanel;
     private Game game;
 
@@ -28,16 +28,16 @@ public class GamePanel extends JPanel {
         this.mapPanel = new MapPanel(game.getMap());
         this.add(mapPanel, BorderLayout.NORTH);
 
-        JButton showWeaponsButton = new JButton("Show Weapons");
-        JButton weaponStoreButton = new JButton("Weapon Store");
+        //JButton showWeaponsButton = new JButton("Show Weapons");
+        //JButton weaponStoreButton = new JButton("Weapon Store");
 
-        weaponStoreButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DialogBoxWeaponsStore weaponsDialog = new DialogBoxWeaponsStore((JFrame) SwingUtilities.getWindowAncestor(GamePanel.this));
-                weaponsDialog.setVisible(true);
-            }
-        });
+        //weaponStoreButton.addActionListener(new ActionListener() {
+        //    @Override
+        //    public void actionPerformed(ActionEvent e) {
+        //        DialogBoxWeaponsStore weaponsDialog = new DialogBoxWeaponsStore((JFrame) SwingUtilities.getWindowAncestor(GamePanel.this));
+        //        weaponsDialog.setVisible(true);
+        //    }
+        //});
 
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(new ActionListener() {
@@ -47,9 +47,9 @@ public class GamePanel extends JPanel {
             }
         });
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
-        buttonPanel.add(showWeaponsButton);
-        buttonPanel.add(weaponStoreButton);
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 1));
+        //buttonPanel.add(showWeaponsButton);
+        //buttonPanel.add(weaponStoreButton);
         buttonPanel.add(quitButton);
 
         this.add(buttonPanel, BorderLayout.WEST);
@@ -95,7 +95,6 @@ public class GamePanel extends JPanel {
                 if (direction != null) {
                     game.getPlayer().move(direction);
                     mapPanel.repaint();
-                    checkEndGame(); // Check for the end of the game when moving
                 }
             }
 
@@ -105,17 +104,6 @@ public class GamePanel extends JPanel {
             }
         });
 
-    }
-
-    private void checkEndGame() {
-        Player player = game.getPlayer();
-        int playerRow = player.getRow();
-        int playerCol = player.getCol();
-
-        if (game.getMap().getMap()[playerRow][playerCol] == 'E') {
-            JOptionPane.showMessageDialog(this, "Congratulations, You have won the game!", "Game Finished", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("Fin du jeu");
-        }
     }
 
     @Override
