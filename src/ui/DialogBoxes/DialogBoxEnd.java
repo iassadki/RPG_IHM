@@ -12,7 +12,7 @@ public class DialogBoxEnd {
     public DialogBoxEnd() {
         JFrame f = new JFrame();
         d = new JDialog(f, "Fin de jeu", true);
-        d.setSize(800, 400); // Ajuster la taille ici
+        d.setSize(800, 400);
         d.setLocationRelativeTo(null);
         d.setResizable(false);
         d.setLayout(new GridBagLayout());
@@ -29,6 +29,12 @@ public class DialogBoxEnd {
             // Fermer l'application
             System.exit(0);
         });
+
+        // Press enter to quit the game
+        JLabel pressEnterLabel = new JLabel("<PRESS ENTER TO QUIT THE GAME>");
+        d.add(pressEnterLabel, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 0, 100), 0, 0));
 
         d.add(quitButton, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
