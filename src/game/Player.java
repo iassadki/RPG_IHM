@@ -65,17 +65,27 @@ public class Player {
         switch (direction) {
             case UP:
                 newRow = Math.max(0, newRow - 1);
+                //map.isFinish(newRow, newCol);
+                //System.out.println("newRow: " + newRow + ", newCol: " + newCol);
                 break;
             case DOWN:
                 newRow = Math.min(map.getNumRows() - 1, newRow + 1);
+                //map.isFinish(newRow, newCol);
+                //System.out.println("newRow: " + newRow + ", newCol: " + newCol);
                 break;
             case RIGHT:
                 newCol = Math.min(map.getNumCols() - 1, newCol + 1);
+                //map.isFinish(newRow, newCol);
+                //System.out.println("newRow: " + newRow + ", newCol: " + newCol);
                 break;
             case LEFT:
                 newCol = Math.max(0, newCol - 1);
+                //map.isFinish(newRow, newCol);
+                //System.out.println("newRow: " + newRow + ", newCol: " + newCol);
                 break;
         }
+
+        map.isFinish(newRow, newCol);
 
         // Vérifier si la nouvelle position est valide
         if (map.isValidPosition(newRow, newCol)) {
@@ -86,6 +96,19 @@ public class Player {
             map.setPlayerPosition(playerRow, playerCol, 2);  // Set the new position
             mapPanel.updatePlayerPosition(playerRow, playerCol);  // Mettez à jour la position du joueur dans le panneau de la carte
             return new int[]{playerRow, playerCol};
+        }
+
+
+        // Vérifier si la nouvelle position est un mur, case 'M'
+        if (map.getNextCell(newRow, newCol) == 'M') {
+            System.out.println("Vous ne pouvez pas aller dans cette direction.");
+            return new int[]{playerRow, playerCol};
+        }
+
+        // Vérifier si la nouvelle position est la sortie, case 'E', en utilisant la methode isFinish de la classe Map
+        if (map.isFinish(newRow, newCol)) {
+            System.out.println("Vous avez gagné !");
+            //return new int[]{playerRow, playerCol};
         }
 
         // Si la nouvelle position n'est pas valide, retourner les coordonnées actuelles
