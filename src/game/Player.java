@@ -85,7 +85,31 @@ public class Player {
                 break;
         }
 
-        map.isFinish(newRow, newCol);
+        // Verifier si la nouvelle position est un mur, case 'M'
+        if (map.isAnWall(newRow, newCol)) {
+            // Ne pas effectuer le déplacement si le mur est rencontré, avec la methode updatePlayerPosition de MapPanel
+            //playerRow = newRow;
+            //playerCol = newCol;
+            mapPanel.updatePlayerPosition(playerRow, playerCol);
+
+            return new int[]{playerRow, playerCol};
+        }
+
+        // Vérifier si la nouvelle position est la case de fin, case 'E'
+        //map.isFinish(newRow, newCol);
+        if (map.isFinish(newRow, newCol)) {
+            // Mettre à jour la position du joueur
+            playerRow = newRow;
+            playerCol = newCol;
+
+            // Mettre à jour la position dans le MapPanel
+            mapPanel.updatePlayerPosition(playerRow, playerCol);
+
+            return new int[]{playerRow, playerCol};
+        }
+
+        // Vérifier si la nouvelle position est un mur, case 'M'
+        //map.isAnWall(newRow, newCol);
 
         // Vérifier si la nouvelle position est valide
         if (map.isValidPosition(newRow, newCol)) {
@@ -96,19 +120,6 @@ public class Player {
             map.setPlayerPosition(playerRow, playerCol, 2);  // Set the new position
             mapPanel.updatePlayerPosition(playerRow, playerCol);  // Mettez à jour la position du joueur dans le panneau de la carte
             return new int[]{playerRow, playerCol};
-        }
-
-
-        // Vérifier si la nouvelle position est un mur, case 'M'
-        if (map.getNextCell(newRow, newCol) == 'M') {
-            System.out.println("Vous ne pouvez pas aller dans cette direction.");
-            return new int[]{playerRow, playerCol};
-        }
-
-        // Vérifier si la nouvelle position est la sortie, case 'E', en utilisant la methode isFinish de la classe Map
-        if (map.isFinish(newRow, newCol)) {
-            System.out.println("Vous avez gagné !");
-            //return new int[]{playerRow, playerCol};
         }
 
         // Si la nouvelle position n'est pas valide, retourner les coordonnées actuelles

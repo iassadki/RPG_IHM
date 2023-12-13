@@ -45,11 +45,28 @@ public class Map {
         System.out.println("newRow: " + newRow + ", newCol: " + newCol);
 
         if (this.map[newRow][newCol] == 'E') {
+            //this.map[newRow][newCol] = 'P';
             System.out.println("Vous avez gagné !");
 
             // Afficher la boîte de dialogue DialogBoxEnd
             DialogBoxEnd dialbox = new DialogBoxEnd();
             dialbox.showDialog();
+
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isAnWall(int newRow, int newCol) {
+
+        if (this.map[newRow][newCol] == 'M') {
+            System.out.println("Vous ne pouvez pas aller dans cette direction.");
+            // faire revenir le joueur a sa position initiale
+            // Si le joueur est alle a gauche, il revient a droite
+            // Si le joueur est alle a droite, il revient a gauche
+            // Si le joueur est alle en haut, il revient en bas
+            // Si le joueur est alle en bas, il revient en haut
+            //this.map[newRow][newCol] = 'P';
 
             return true;
         }

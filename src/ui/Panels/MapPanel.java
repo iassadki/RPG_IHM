@@ -51,9 +51,9 @@ public class MapPanel extends JPanel {
             for (int col = 0; col < this.mapGrid[0].length; col++) {
                 Color color;
                 switch (this.mapGrid[row][col]) {
-                    case 'P':
-                        color = new Color(0, 255, 255);
-                        break;
+                    //case 'P':
+                        //color = new Color(0, 255, 255);
+                        //break;
                     case 'M':
                         color = Color.BLACK;
                         break;
