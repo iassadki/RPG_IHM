@@ -61,13 +61,6 @@ public class Map {
 
         if (this.map[newRow][newCol] == 'M') {
             System.out.println("Vous ne pouvez pas aller dans cette direction.");
-            // faire revenir le joueur a sa position initiale
-            // Si le joueur est alle a gauche, il revient a droite
-            // Si le joueur est alle a droite, il revient a gauche
-            // Si le joueur est alle en haut, il revient en bas
-            // Si le joueur est alle en bas, il revient en haut
-            //this.map[newRow][newCol] = 'P';
-
             return true;
         }
         return false;
